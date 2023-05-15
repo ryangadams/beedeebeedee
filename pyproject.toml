@@ -1,0 +1,63 @@
+[build-system]
+# Minimum requirements for the build system to execute.
+requires = ["setuptools", "wheel"]  # PEP 508 specifications.
+
+[project]
+name = "BeeDeeBeeDee"
+version = "1.0.0"
+description = "My little AI helper"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {file = "LICENSE.txt"}
+keywords = []
+authors = [
+  {email = "ryan.g.adams@gmail.com"},
+  {name = "Ryan Adams"}
+]
+maintainers = [
+  {name = "Ryan Adams", email = "ryan.g.adams@gmail.com"}
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python"
+]
+
+dependencies = [
+    "requests"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "pytest-cov[all]",
+  "black",
+  "pylint"
+]
+
+[project.urls]
+homepage = "https://rga.me.uk"
+repository = "https://github.com/ryangadams/beedeebeedee"
+#changelog = "https://github.com/me/spam/blob/master/CHANGELOG.md"
+
+[project.scripts]
+hal = "hal9000.app:hal"
+dali = "hal9000.app:dali"
+
+[tool.black]
+exclude = '''
+/(
+   \.direnv
+  |\.eggs
+  |\.git
+  |\.mypy_cache
+  |\.nox
+  |\.tox
+  |\.venv
+  |_build
+  |buck-out
+  |build
+  |dist
+  |cdk.out
+  |fixtures
+)/
+'''
