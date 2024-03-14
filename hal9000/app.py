@@ -17,6 +17,7 @@ def hal():
     body = {
         "model": "gpt-3.5-turbo",
         "messages": [
+            {"role": "system", "content": "when asked to generate code, output only the code and no explanation"},
             {"role": "user", "content": f"{prompt}"}
         ],
         "temperature": 0.7,
@@ -35,8 +36,10 @@ def dali():
     prompt = " ".join(sys.argv[1:])
     body = {
         "prompt": f"{prompt}",
+        "model": "dall-e-3",
         "n": 1,
-        "size": "1024x1024"
+        "size": "1792x1024",
+        "style": "natural"
     }
     contents = openai_post(f"{config['api']['url']}/images/generations", body)
 
