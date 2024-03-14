@@ -2,6 +2,8 @@ import pathlib
 import re
 import sys
 import tomllib
+from pprint import pprint
+
 import requests
 import subprocess
 
@@ -14,11 +16,19 @@ def hal():
     prompt = " ".join(sys.argv[1:])
     body = {
         "model": "gpt-3.5-turbo",
-        "messages": [{"role": "user", "content": f"{prompt}"}],
+        "messages": [
+            {"role": "system", "content": "respond in JSON format"},
+            {"role": "user", "content": f"{prompt}"}
+        ],
         "temperature": 0.7,
+        "response_format": {"type": "json"}
     }
     contents = openai_post(f"{config['api']['url']}/chat/completions", body)
-
+    print(f"ConversationID: {contents['id']}")
+    if not "choices" in contents:
+        print("Unexpected Response")
+        print("Raw response was")
+        print(pprint(contents))
     print(contents['choices'][0]['message']['content'])
 
 
