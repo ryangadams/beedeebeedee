@@ -15,7 +15,7 @@ with open(config_file, "rb") as f:
 def hal():
     prompt = " ".join(sys.argv[1:])
     body = {
-        "model": "gpt-3.5-turbo",
+        "model": config['api'].get('model', "gpt-3.5-turbo"),
         "messages": [
             {"role": "system", "content": "when asked to generate code, output only the code and no explanation"},
             {"role": "user", "content": f"{prompt}"}
