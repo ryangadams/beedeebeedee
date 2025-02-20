@@ -59,7 +59,7 @@ def openai_post(url, body):
 
 
 def download_generated_image(image_url, prompt):
-    filename = re.sub("[^a-z_]+", "", re.sub(" ", "_", prompt.lower())) + ".png"
+    filename = re.sub("[^a-z_]+", "", re.sub(" ", "_", prompt.lower()))[:75] + ".png"
     r = requests.get(image_url, stream=True)
     file_path = pathlib.Path(f"~/Downloads/{filename}").expanduser()
     with open(file_path, 'wb') as fd:
